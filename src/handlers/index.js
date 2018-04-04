@@ -1,9 +1,9 @@
-const LaunchRequest = require('./LaunchRequest');
-const GetSpendingReportIntent = require('./GetSpendingReport');
-const GetAccountBalanceIntent = require('./GetAccountBalance');
+const launchRequestHandler = require('./launchRequest');
+const spendingReportHandler = require('./spendingReport');
+const accountBalanceHandlers = require('./accountBalance');
 
-module.exports = {
-  LaunchRequest,
-  GetSpendingReportIntent,
-  GetAccountBalanceIntent,
-};
+module.exports = [
+  launchRequestHandler,
+  spendingReportHandler,
+  accountBalanceHandlers
+];

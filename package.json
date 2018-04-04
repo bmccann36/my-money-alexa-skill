@@ -4,7 +4,7 @@
   "description": "Practice App",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "deploy": "bash ./deploy.sh"
   },
   "author": "Josh and Brian",
@@ -13,8 +13,11 @@
     "alexa-sdk": "^1.0.25"
   },
   "devDependencies": {
+    "chai": "^4.1.2",
     "eslint": "^4.19.1",
-    "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.10.0"
+    "eslint-config-fullstack": "^4.0.0",
+    "eslint-plugin-import": "^2.10.0",
+    "eslint-plugin-react": "^7.7.0",
+    "mocha": "^5.0.5"
   }
 }

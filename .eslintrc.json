@@ -1,5 +1,5 @@
 {
-  "extends": "airbnb-base",
+  "extends": "fullstack",
   "rules": {
     "semi-style": "error",
     "func-names": "off"
