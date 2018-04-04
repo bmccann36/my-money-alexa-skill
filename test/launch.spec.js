@@ -11,7 +11,7 @@ function cb(err, resultObject) {
   else res = resultObject;
 }
 
-describe('BASIC HANDLER TESTS', () => {
+describe('LaunchRequest Intent', () => {
   it('calls the launch handler and returns the correct directive', () => {
     const context = { hello: 'world' };
     handler(launchEvent, context, cb);

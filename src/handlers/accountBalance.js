@@ -1,8 +1,11 @@
-const accounts = ['checking', 'savings'];
+const balances = {
+  savings: 'Two Thousand Dollars',
+  checking: 'Five Hundred Dollars'
+};
 
-function makeAccountsString(accounts) {
-  return accounts.reduce((prev, curr, idx) => {
-    if (idx < accounts.length - 1) {
+function makeAccountsString(accountsArr) {
+  return accountsArr.reduce((prev, curr, idx) => {
+    if (idx < accountsArr.length - 1) {
       return prev + ' , ' + curr;
     }
     return prev + ' and ' + curr;
@@ -11,6 +14,7 @@ function makeAccountsString(accounts) {
 
 const getAccountBalanceHandlers = {
   GetAccountBalanceIntent: function() {
+    const accounts = this.event.accounts;
     const intentObj = this.event.request.intent;
     let speechOutput;
     const accountType = intentObj.slots.accountType.value;
@@ -25,13 +29,19 @@ const getAccountBalanceHandlers = {
         this.emit(':elicitSlot', slotToElicit, speechOutput, repromptSpeech);
       } else {
         // only has one account
+        this.emit('returnAccountBalance', accounts[0]);
       }
     } else {
       // did enter an account type, slot is filled
+      this.emit('returnAccountBalance', accountType);
     }
   },
-  returnAccountBalance: function() {
-    return 'account balance';
+  returnAccountBalance: function(accountType) {
+    const balance = balances[accountType];
+    const speechOutput = `You have ${balance} in your ${accountType} account.`;
+    const repromptSpeech = 'Sorry I didnt understand that';
+    this.response.speak(speechOutput).listen(repromptSpeech);
+    this.emit(':responseReady');
   }
 };
 

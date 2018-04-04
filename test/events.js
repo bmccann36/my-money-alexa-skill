@@ -1,4 +1,153 @@
+function createIntentEvent(intent) {
+  return {
+    session: {
+      sessionId: 'SessionId.154291c5-a13f-4e7a-ab5a-707ca12501a8',
+      application: {
+        applicationId: 'amzn1.echo-sdk-ams.app.APP_ID'
+      },
+      attributes: {},
+      user: {
+        userId: null
+      },
+      new: true
+    },
+    request: {
+      type: 'IntentRequest',
+      requestId: 'EdwRequestId.474c15c8-14d2-4a77-a4ce-11728a114af7',
+      timestamp: '2016-07-05T22:02:01Z',
+      intent: {
+        name: intent,
+        slots: {
+          Language: {
+            name: 'Language',
+            value: 'ionic'
+          }
+        }
+      },
+      locale: 'en-US'
+    },
+    version: '1.0'
+  };
+}
+
 module.exports = {
+  createIntentEvent,
+  accountBalanceEventOneAccount: {
+    accounts: ['savings'],
+    version: '1.0',
+    session: {
+      new: false,
+      sessionId: 'amzn1.echo-api.session.1131898a-776c-4d20-8cf6-8a9822940c65',
+      application: {
+        applicationId: 'amzn1.ask.skill.7792ee30-5ca7-4645-a77b-3ae35434dfc4'
+      },
+      user: {
+        userId:
+          ''
+      }
+    },
+    request: {
+      type: 'IntentRequest',
+      requestId: 'amzn1.echo-api.request.2c992336-8604-485a-9139-638449e27f66',
+      timestamp: '2018-04-04T15:08:53Z',
+      locale: 'en-US',
+      intent: {
+        name: 'GetAccountBalanceIntent',
+        confirmationStatus: 'NONE',
+        slots: {
+          accountType: {
+            name: 'accountType',
+            confirmationStatus: 'NONE'
+          }
+        }
+      },
+      dialogState: 'STARTED'
+    }
+  },
+  accountBalanceWithSlotsEvent: {
+    accounts: ['checking', 'savings'],
+    version: '1.0',
+    session: {
+      new: false,
+      sessionId: 'amzn1.echo-api.session.1131898a-776c-4d20-8cf6-8a9822940c65',
+      application: {
+        applicationId: 'amzn1.ask.skill.7792ee30-5ca7-4645-a77b-3ae35434dfc4'
+      },
+      user: {
+        userId:
+          ''
+      }
+    },
+    request: {
+      type: 'IntentRequest',
+      requestId: 'amzn1.echo-api.request.ca639762-583f-4866-b2dc-3baf20aa1738',
+      timestamp: '2018-04-04T15:25:19Z',
+      locale: 'en-US',
+      intent: {
+        name: 'GetAccountBalanceIntent',
+        confirmationStatus: 'NONE',
+        slots: {
+          accountType: {
+            name: 'accountType',
+            value: 'savings',
+            resolutions: {
+              resolutionsPerAuthority: [
+                {
+                  authority:
+                    '',
+                  status: {
+                    code: 'ER_SUCCESS_MATCH'
+                  },
+                  values: [
+                    {
+                      value: {
+                        name: 'savings',
+                        id: '4bfddaa41fee050e0c15efa9a5cb4c65'
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            confirmationStatus: 'NONE'
+          }
+        }
+      },
+      dialogState: 'IN_PROGRESS'
+    }
+  },
+  accountBalanceEvent: {
+    accounts: ['checking', 'savings'],
+    version: '1.0',
+    session: {
+      new: false,
+      sessionId: 'amzn1.echo-api.session.1131898a-776c-4d20-8cf6-8a9822940c65',
+      application: {
+        applicationId: 'amzn1.ask.skill.7792ee30-5ca7-4645-a77b-3ae35434dfc4'
+      },
+      user: {
+        userId:
+          ''
+      }
+    },
+    request: {
+      type: 'IntentRequest',
+      requestId: 'amzn1.echo-api.request.2c992336-8604-485a-9139-638449e27f66',
+      timestamp: '2018-04-04T15:08:53Z',
+      locale: 'en-US',
+      intent: {
+        name: 'GetAccountBalanceIntent',
+        confirmationStatus: 'NONE',
+        slots: {
+          accountType: {
+            name: 'accountType',
+            confirmationStatus: 'NONE'
+          }
+        }
+      },
+      dialogState: 'STARTED'
+    }
+  },
   launchEvent: {
     version: '1.0',
     session: {
@@ -9,36 +158,7 @@ module.exports = {
       },
       user: {
         userId:
-          'amzn1.ask.account.AGHT6PERBIF6OPPDHZ6WON4LHTKD6DTEXG5QOAVIKKUHCVSIEYRB2PTXHBTDWW5HCHA5DF56O6TXAW5CRGGWVPMJV5IL2YMSZNUAIUXG2TJJ2734GONPFJ4ZSEMDA5XRGEL5NGZD4C4VP4HASAHIELJNRVPCGRUNAHWGCQQQUWJOICWM7CAAAPZ6OCP7PWGBA3BR3JPHRZ4ZOOY'
-      }
-    },
-    context: {
-      AudioPlayer: {
-        playerActivity: 'IDLE'
-      },
-      Display: {},
-      System: {
-        application: {
-          applicationId: 'amzn1.ask.skill.7792ee30-5ca7-4645-a77b-3ae35434dfc4'
-        },
-        user: {
-          userId:
-            'amzn1.ask.account.AGHT6PERBIF6OPPDHZ6WON4LHTKD6DTEXG5QOAVIKKUHCVSIEYRB2PTXHBTDWW5HCHA5DF56O6TXAW5CRGGWVPMJV5IL2YMSZNUAIUXG2TJJ2734GONPFJ4ZSEMDA5XRGEL5NGZD4C4VP4HASAHIELJNRVPCGRUNAHWGCQQQUWJOICWM7CAAAPZ6OCP7PWGBA3BR3JPHRZ4ZOOY'
-        },
-        device: {
-          deviceId:
-            'amzn1.ask.device.AGYNOUBHEHBF2QO3LLRFY2HC3M2KYOO4ALQSXR2C6DPBFHTOXFDSMAOZIQI3ZVBSVJ22COOMWOIVWQGLNMIRLUOWQE657ZCZPG7OG5L2VUQ32GF6BJ652JDSBT2SYA45QN3DLPLA5YQMZ4G5GWF6I5MQ6M5Q',
-          supportedInterfaces: {
-            AudioPlayer: {},
-            Display: {
-              templateVersion: '1.0',
-              markupVersion: '1.0'
-            }
-          }
-        },
-        apiEndpoint: 'https://api.amazonalexa.com',
-        apiAccessToken:
-          'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IjEifQ.eyJhdWQiOiJodHRwczovL2FwaS5hbWF6b25hbGV4YS5jb20iLCJpc3MiOiJBbGV4YVNraWxsS2l0Iiwic3ViIjoiYW16bjEuYXNrLnNraWxsLjc3OTJlZTMwLTVjYTctNDY0NS1hNzdiLTNhZTM1NDM0ZGZjNCIsImV4cCI6MTUyMjg1NTU3MSwiaWF0IjoxNTIyODUxOTcxLCJuYmYiOjE1MjI4NTE5NzEsInByaXZhdGVDbGFpbXMiOnsiY29uc2VudFRva2VuIjpudWxsLCJkZXZpY2VJZCI6ImFtem4xLmFzay5kZXZpY2UuQUdZTk9VQkhFSEJGMlFPM0xMUkZZMkhDM00yS1lPTzRBTFFTWFIyQzZEUEJGSFRPWEZEU01BT1pJUUkzWlZCU1ZKMjJDT09NV09JVldRR0xOTUlSTFVPV1FFNjU3WkNaUEc3T0c1TDJWVVEzMkdGNkJKNjUySkRTQlQyU1lBNDVRTjNETFBMQTVZUU1aNEc1R1dGNkk1TVE2TTVRIiwidXNlcklkIjoiYW16bjEuYXNrLmFjY291bnQuQUdIVDZQRVJCSUY2T1BQREhaNldPTjRMSFRLRDZEVEVYRzVRT0FWSUtLVUhDVlNJRVlSQjJQVFhIQlREV1c1SENIQTVERjU2TzZUWEFXNUNSR0dXVlBNSlY1SUwyWU1TWk5VQUlVWEcyVEpKMjczNEdPTlBGSjRaU0VNREE1WFJHRUw1TkdaRDRDNFZQNEhBU0FISUVMSk5SVlBDR1JVTkFIV0dDUVFRVVdKT0lDV003Q0FBQVBaNk9DUDdQV0dCQTNCUjNKUEhSWjRaT09ZIn19.RITgd8zzPGN9asu7kWMd5BvUZVWOwp1ybCRjrV4fC2OwwOfJARyQE0ntrxJSdCxs4SC00XPeTjOqIty4woWGPfFwKnNAEhLTzkFUPlowqm-PKsDr6lzUXTAWDt2NM49iHhw1iYHBO5cDZ6GJuo7GdD9rwsrYPQ1pAgfiQcfkTOSamsESsAd_qCjpHr7XkHvFbOiaS7Kj4WPC18Jm7v7ba8_LPVZu_XGry51Q3hg2hRA9GFxY06MG6J1LSDsIBfykiUJVXUKh4FCH0wblIT3-v_0vRq1QsoumsetiddwHzwMGQoTgQDdC8sup7L0Lubybtwc-UzwB1yIlp6sqacLI9g'
+          ''
       }
     },
     request: {
