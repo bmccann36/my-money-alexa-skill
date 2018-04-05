@@ -1,5 +1,6 @@
 const launchRequestHandler = {
   LaunchRequest: function() {
+    console.log(this);
     const speechOutput =
       'Welcome to my money. You can do things like check your balance, ask about budgets, and pay bills.';
     const repromptSpeech =
