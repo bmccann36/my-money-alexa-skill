@@ -1,7 +1,10 @@
+const chalk = require('chalk');
+
 const balances = {
   savings: 'Two Thousand Dollars',
   checking: 'Five Hundred Dollars'
 };
+const { fetchAccountInfo } = require('../outbound');
 
 function makeAccountsString(accountsArr) {
   return accountsArr.reduce((prev, curr, idx) => {
@@ -13,14 +16,17 @@ function makeAccountsString(accountsArr) {
 }
 
 const getAccountBalanceHandlers = {
-  GetAccountBalanceIntent: function() {
-    const accounts = this.event.accounts;
+  GetAccountBalanceIntent: async function() {
+    const { accessToken } = this.event.session.user;
+    const accountInfo = await fetchAccountInfo(accessToken);
+    const accounts = accountInfo.Item.accounts;
     const intentObj = this.event.request.intent;
+
     let speechOutput;
     const accountType = intentObj.slots.accountType.value;
     if (!accountType) {
       // didn't specify an account to check
-      if (accounts.length > 1) {
+      if (Object.keys(accounts).length > 1) {
         // has multiple accounts
         const slotToElicit = 'accountType';
         const usersAccounts = makeAccountsString(accounts);
