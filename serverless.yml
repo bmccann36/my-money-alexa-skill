@@ -1,34 +1,52 @@
-# NOTE: update this with your service name
-service: serverless-nodejs-starter
 
-# Use the serverless-webpack plugin to transpile ES6
-plugins:
-  - serverless-webpack
-  - serverless-offline
-
-# serverless-webpack configuration
-# Enable auto-packing of external modules
-custom:
-  webpack:
-    webpackConfig: ./webpack.config.js
-    includeModules: true
+service: my-money-sfm
+# Use serverless-webpack plugin to transpile ES6/ES7
+package:
+  exlude:
+    - node_modules/aws-sdk/**
+    - node_modules/mocha/**
 
 provider:
   name: aws
-  runtime: nodejs6.10
+  runtime: nodejs8.10
+  environment:
+    USER_TABLE: myMoney
   stage: dev
   region: us-east-1
-  # To load environment variables externally
-  # rename env.example to env.yml and uncomment
-  # the following line. Also, make sure to not
-  # commit your env.yml.
-  #
-  #environment: ${file(env.yml):${self:provider.stage}}
+
+  # 'iamRoleStatement' defines the permission policy for the Lambda function.
+  # In this case Lambda functions are granted with permissions to access DynamoDB.
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:DescribeTable
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:us-east-1:*:*"
 
 functions:
-  hello:
-    handler: handler.hello
+
+  # alexa skill handler
+  skill:
+    handler: alexa/index.handler
+    events:
+      - alexaSkill
+
+  list:
+    handler: users/list.list
     events:
       - http:
-          path: hello
+          path: users
           method: get
+          cors: true
+  get:
+    handler: users/get.get
+    events:
+      - http:
+          path: users/{userID}
+          method: get
+          cors: true
